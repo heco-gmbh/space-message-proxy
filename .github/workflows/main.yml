@@ -23,7 +23,7 @@ jobs:
       - name: Push built container to Container Registry
         run: docker system info | grep -E 'Username|Registry' &&  docker push ghcr.io/${{ github.repository_owner }}/space-message-proxy:latest
   deploy:
-    runs-on: ubuntu-latesCt
+    runs-on: ubuntu-latest
     permissions:
       packages: read
     steps:
