@@ -1,0 +1,28 @@
+name: Containerize ASP.NET Core application
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v2
+      # Package the app into a linux-x64 container based on the dotnet/aspnet image
+      - name: Publish
+        run: dotnet publish --os linux --arch x64 --configuration Release -p:PublishProfile=DefaultContainer -p:PublishSingleFile=true -p:SelfContained=true -p:PublishReadyToRun=true
+      - name: Log in to the Container registry
+        uses: docker/login-action@master
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Tag built container
+        uses: actions-hub/docker/cli@master
+        with:
+          args: tag space-message-proxy:1.0.0 ghcr.io/${{ github.repository_owner }}/space-message-proxy:latest
+      - name: Push built container to Azure Container Registry
+        uses: actions-hub/docker/cli@master
+        with:
+          args: push ghcr.io/${{ github.repository_owner }}/space-message-proxy:latest
