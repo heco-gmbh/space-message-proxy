@@ -22,3 +22,19 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Push built container to Container Registry
         run: docker system info | grep -E 'Username|Registry' &&  docker push ghcr.io/${{ github.repository_owner }}/space-message-proxy:latest
+  deploy:
+    run-on: ubuntu-latest
+    permissions:
+      packages: read
+    steps:
+      - name: 'Deploy to Azure Container Instances'
+        uses: 'azure/aci-deploy@v1'
+        with:
+          resource-group: ${{ secrets.RESOURCE_GROUP }}
+          dns-name-label: ${{ secrets.RESOURCE_GROUP }}${{ github.run_number }}
+          image: ghcr.io/${{ github.repository_owner }}/space-message-proxy:latest
+          registry-login-server: ghcr.io
+          registry-username: ${{ github.actor }}
+          registry-password: ${{ secrets.GITHUB_TOKEN }}
+          name: space-proxy
+          location: 'west europe'
