@@ -13,7 +13,7 @@ jobs:
       - name: Publish
         run: dotnet publish --os linux --arch x64 --configuration Release -p:PublishProfile=DefaultContainer -p:PublishSingleFile=true -p:SelfContained=true -p:PublishReadyToRun=true
       - name: Log in to the Container registry
-        uses: docker/login-action@master
+        uses: actions-hub/docker/login@master
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
