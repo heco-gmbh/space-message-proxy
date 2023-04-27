@@ -3,7 +3,7 @@ name: Containerize ASP.NET Core application
 on: [push]
 
 jobs:
-  build:
+  build-publish:
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -22,11 +22,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Push built container to Container Registry
         run: docker system info | grep -E 'Username|Registry' &&  docker push ghcr.io/${{ github.repository_owner }}/space-message-proxy:latest
-  deploy:
-    runs-on: ubuntu-latest
-    permissions:
-      packages: read
-    steps:
       - name: 'Deploy to Azure Container Instances'
         uses: 'azure/aci-deploy@v1'
         with:
@@ -38,3 +33,4 @@ jobs:
           registry-password: ${{ secrets.GITHUB_TOKEN }}
           name: space-proxy
           location: 'west europe'
+      
