@@ -13,7 +13,7 @@ jobs:
       - name: Publish
         run: dotnet publish --os linux --arch x64 --configuration Release -p:PublishProfile=DefaultContainer -p:PublishSingleFile=true -p:SelfContained=true -p:PublishReadyToRun=true
       - name: Log in to the Container registry
-        uses: actions-hub/docker/login@master
+        uses: docker/login-action@master
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -21,6 +21,7 @@ jobs:
       - name: Tag built container
         uses: actions-hub/docker/cli@master
         with:
+          skip-login: true
           args: tag space-message-proxy:1.0.0 ghcr.io/${{ github.repository_owner }}/space-message-proxy:latest
       - name: Push built container to Azure Container Registry
         uses: actions-hub/docker/cli@master
