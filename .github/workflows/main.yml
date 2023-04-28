@@ -31,9 +31,7 @@ jobs:
           az --version
           az account show
           az config get
-          az group list
-          az configure --defaults group=rg-sp
-          az webapp list --debug
+          az webapp list
       - name: Set Web App ACR authentication
         uses: FrankStrieter/appservice-settings@v1
         with:
