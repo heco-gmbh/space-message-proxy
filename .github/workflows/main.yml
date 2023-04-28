@@ -27,7 +27,9 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: 'get apps'
-        run: az webapp list
+        run: |
+          az --version
+          az webapp list
       - name: Set Web App ACR authentication
         uses: Azure/appservice-settings@v1
         with:
