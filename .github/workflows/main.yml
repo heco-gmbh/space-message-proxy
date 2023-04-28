@@ -27,7 +27,7 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: Set Web App ACR authentication
-        uses: Azure/appservice-settings@v1
+        uses: Azure/appservice-settings@latest
         with:
           app-name: 'app-space-message-proxy'
           app-settings-json: |
