@@ -32,7 +32,7 @@ jobs:
           az account show
           az config get
           az group list
-          az webapp list --debug
+          az webapp list -g rg-sp --debug
       - name: Set Web App ACR authentication
         uses: Azure/appservice-settings@v1
         with:
