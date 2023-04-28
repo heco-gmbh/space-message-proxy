@@ -10,11 +10,7 @@
     <ItemGroup>
         <ContainerPort Include="443" Type="tcp" />
     </ItemGroup>
-    <ItemGroup Label="Entrypoint Assignment">
-        <!-- This shorthand syntax means the same thing - note the semicolon separating the tokens. -->
-        <ContainerEntrypoint Remove="/app/Space-Message-Proxy" />
-        <ContainerEntrypoint Include="/bin/sh;-c;dotnet dev-certs https %26%26 /app/Space-Message-Proxy" />
-    </ItemGroup>
+   
     <ItemGroup>
       <Content Update="appsettings.Development.json.template">
         <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
