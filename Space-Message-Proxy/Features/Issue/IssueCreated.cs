@@ -9,11 +9,11 @@ public class IssueCreated
     }
 
     
-    public Message toMessage()
+    public Message toMessage(string hostname)
     {
         return new Message()
         {
-            Text = $"\n*{Payload.Issue.CreatedBy.Name} hat ein Issue erstellt:* :rocket: \n\n *{Payload.Issue.Title}* \n _{Payload.Issue.Description?? "Keine Beschreibung"}_"
+            Text = $"\n*{Payload.Issue.CreatedBy.Name} hat ein Issue erstellt:* :rocket: \n\n *{Payload.Issue.Title}* \n _{Payload.Issue.Description?? "Keine Beschreibung"}_ \n {Payload.Issue.GetLink(hostname)}"
         };
     }
     
