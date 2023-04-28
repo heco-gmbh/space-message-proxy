@@ -36,5 +36,6 @@ jobs:
           registry-username: ${{ github.actor }}
           registry-password: ${{ secrets.GITHUB_TOKEN }}
           name: space-proxy
+          ports: 443
           location: 'west europe'
       
