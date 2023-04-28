@@ -35,9 +35,10 @@ jobs:
           az configure --defaults group=rg-sp
           az webapp list --debug
       - name: Set Web App ACR authentication
-        uses: Azure/appservice-settings@v1
+        uses: https://github.com/FrankStrieter/appservice-settings@master
         with:
           app-name: 'app-space-message-proxy'
+          group-name: 'rg-sp'
           app-settings-json: |
             [
                 {
