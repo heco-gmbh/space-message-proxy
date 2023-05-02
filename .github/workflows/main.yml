@@ -26,40 +26,6 @@ jobs:
         uses: azure/login@v1.4.7
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - name: 'get apps'
-        run: |
-          az --version
-          az account show
-          az config get
-          az webapp list
-      - name: Set Web App ACR authentication
-        uses: FrankStrieter/appservice-settings@v1
-        with:
-          app-name: 'app-space-message-proxy'
-          group-name: 'rg-sp'
-          app-settings-json: |
-            [
-                {
-                    "name": "DOCKER_REGISTRY_SERVER_PASSWORD",
-                    "value": "${{ secrets.GITHUB_TOKEN }}",
-                    "slotSetting": false
-                },
-                {
-                    "name": "DOCKER_REGISTRY_SERVER_URL",
-                    "value": "https://ghcr.io",
-                    "slotSetting": false
-                },
-                {
-                    "name": "DOCKER_REGISTRY_SERVER_USERNAME",
-                    "value":  "${{ github.actor }}",
-                    "slotSetting": false
-                },
-                {
-                    "name": "WEBSITES_ENABLE_APP_SERVICE_STORAGE",
-                    "value": false,
-                    "slotSetting": false
-                }
-            ]
       - uses: azure/webapps-deploy@v2
         with:
           app-name: 'app-space-message-proxy'
