@@ -13,7 +13,7 @@ jobs:
         uses: actions/setup-dotnet@v2
       # Package the app into a linux-x64 container based on the dotnet/aspnet image
       - name: 'Publish docker image'
-        run: dotnet publish --os linux --arch x64 --configuration Release -p:PublishProfile=DefaultContainer -p:PublishSingleFile=true -p:SelfContained=true -p:PublishReadyToRun=true -p:ContainerImageTags=latest -p:ContainerImageName=ghcr.io/${{ github.repository_owner }}/space-message-proxy
+        run: dotnet publish --os linux --arch x64 --configuration Release -p:PublishProfile=DefaultContainer -p:PublishSingleFile=true -p:SelfContained=true -p:PublishReadyToRun=true -p:ContainerImageTags=latest;${{github.sha}} -p:ContainerImageName=ghcr.io/${{ github.repository_owner }}/space-message-proxy
       - name: Log in to the Container registry
         uses: docker/login-action@master
         with:
@@ -21,7 +21,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Push built container to Container Registry
-        run: docker push ghcr.io/${{ github.repository_owner }}/space-message-proxy:latest
+        run: docker push -a ghcr.io/${{ github.repository_owner }}/space-message-proxy:latest
       - name: 'Login via Azure CLI'
         uses: azure/login@v1.4.7
         with:
