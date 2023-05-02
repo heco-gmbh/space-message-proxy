@@ -5,7 +5,6 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <RootNamespace>Space_Message_Proxy</RootNamespace>
-        <ContainerBaseImage>mcr.microsoft.com/dotnet/sdk:7.0</ContainerBaseImage>
     </PropertyGroup>
     <ItemGroup>
         <ContainerPort Include="80" Type="tcp" />
