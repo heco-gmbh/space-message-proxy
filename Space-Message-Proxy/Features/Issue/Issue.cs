@@ -2,13 +2,13 @@
 
 public class Issue
 {
-    public string Title { get; set; }
-    public string? Description { get; set; }
-    public Principal CreatedBy { get; set; }
+    public string Title { get; private set; }
+    public string? Description { get; private set; }
+    public Principal CreatedBy { get; private set; }
     
-    public Channel Channel { get; set; }
+    public Channel Channel { get; private set; }
 
-    public int Number {get; set; }
+    public int Number {get; private set; }
 
     public Issue(IssueDto dto)
     {

@@ -2,8 +2,8 @@
 
 public class Contact 
 {
-    public Ext Ext { get; set; }
-    public string DefaultName { get; set; }
+    public Ext Ext { get; private set; }
+    public string DefaultName { get; private set; }
     public Contact(ContactDto dto)
     {
         Ext = new Ext(dto.Ext);

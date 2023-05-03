@@ -2,10 +2,11 @@
 
 public class DocumentCreatedMeta
 {
+    public Principal Principal { get; private set; }
     public DocumentCreatedMeta(DocumentCreatedMetaDto dto)
     {
         Principal = new Principal(dto.Principal);
     }
     
-    public Principal Principal { get; set; }
+   
 }

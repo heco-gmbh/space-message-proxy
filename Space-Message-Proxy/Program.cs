@@ -16,4 +16,9 @@ app.MapPost("/documentCreated", async (context) =>
 { 
     await DocumentCreatedHandler.Handle(context);
 });
+
+app.MapPost("/issueStatusChange", async (context) =>
+{ 
+    await IssueStatusChangeHandler.Handle(context);
+});
 app.Run();

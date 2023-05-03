@@ -21,7 +21,7 @@ public class IssueCreatedHandler
         request.Method = HttpMethod.Post;
         request.RequestUri = new Uri(slackUrl);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", bearerToken);
-        request.Content = JsonContent.Create(issue.toMessage(hostName));
+        request.Content = JsonContent.Create(issue.ToMessage(hostName));
         return TypedResults.Ok(await client.SendAsync(request));
     }
 }

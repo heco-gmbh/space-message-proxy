@@ -2,8 +2,8 @@
 
 public class DocumentCreatedPayload
 {
-    public string Document { get; set; }
-    public DocumentCreatedMeta Meta { get; set; }
+    public string Document { get; private set; }
+    public DocumentCreatedMeta Meta { get; private set; }
 
     public DocumentCreatedPayload(DocumentCreatedPayloadDto dto)
     {

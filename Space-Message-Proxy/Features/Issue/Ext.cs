@@ -2,7 +2,7 @@
 
 public class Ext
 {
-    public ProjectKey ProjectKey { get; set; }
+    public ProjectKey ProjectKey { get; private set; }
     public Ext(ExtDto dto)
     {
         ProjectKey = new ProjectKey(dto.projectKey);

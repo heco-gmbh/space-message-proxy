@@ -2,7 +2,7 @@
 
 public class DocumentCreated
 {
-    public DocumentCreatedPayload Payload { get; set; }
+    public DocumentCreatedPayload Payload { get; private set; }
 
     public DocumentCreated(DocumentCreatedDto dto)
     {
@@ -10,12 +10,11 @@ public class DocumentCreated
 
     }
 
-    public Message toMessage(string hostname)
+    public Message ToMessage(string hostname)
     {
-        return new Message()
-        {
-            Text = $"\n*{Payload.Meta.Principal.Name} hat ein Dokument erstellt:* :bookmark_tabs: \n\n *{Payload.Document}* \n "
-        };
+        return new Message(
+            $"\n*{Payload.Meta.Principal.Name} hat ein Dokument erstellt:* :bookmark_tabs: \n\n *{Payload.Document}* \n ");
+
     }
 
 

@@ -3,7 +3,7 @@
 public class IssueCreatedPayload
 {
 
-    public Issue Issue { get; set; }
+    public Issue Issue { get; private set; }
 
     public IssueCreatedPayload(IssueCreatedPayloadDto dto)
     {
