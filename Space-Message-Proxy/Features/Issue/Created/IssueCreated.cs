@@ -12,7 +12,7 @@ public class IssueCreated
     public Message ToMessage(string hostname)
     {
         return new Message(
-            $"\n*{Payload.Issue.CreatedBy.Name} hat ein Issue erstellt:* :rocket: \n\n *{Payload.Issue.Title}* \n _{Payload.Issue.Description ?? "Keine Beschreibung"}_ \n {Payload.Issue.GetLink(hostname)}");
+            $"\n*{Payload.Issue.CreatedBy.Name} hat ein Issue erstellt:* :rocket: \n\n *{Payload.Issue.Title}* \n {Payload.Issue.GetLink(hostname)}");
 
     }
     
